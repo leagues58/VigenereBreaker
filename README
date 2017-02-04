@@ -1,0 +1,47 @@
+README
+
+***** Compilation *****
+1. In a terminal window, navigate to the project directory.  Type the 'make' command, and the program
+   will compile, resulting in an executable called 'vigenere'.
+
+***** Execution *****
+2. To execute the program, enter the command './vigenere <text.txt>' where <text.txt> is the text file
+   containing the ciphertext you want decrypted.  Pressing enter will run this command, the output of
+   which will be printed in the terminal window. (A copy of the assignment's ciphertext is included in 
+   this directory, and is called 'ciphertext.txt'.)
+
+***** Interpreting Output *****
+3. There is quite a lot of output so that you can get a sense of how the program operates:
+
+   - First, the program will print out the logs of opening and closing the input stream from the text
+   file.  Next, the number of total characters and the full text is printed.
+
+   - Second, the process for finding the keylength is printed.  This consists of the number of coincidences
+   found for each comparison of two copies of the ciphertext, with one set being shifted by one element before
+   each comparison.  A more in-depth explanation of this process is given in the actual code itself.  
+   The keylength is then determined to be equal to the size of the offset that resulted in the maximum number
+   of coincidences.  This number is printed next.
+
+   - The next section of text consists of a certain number of 'passes,' which will equal the recently-determined
+   key length.  So, for each letter of the key, the program will calculate the dot product between a vector 
+   containing every i-th letter of the cipher text, where i is the keylength, and a vector containing the standard
+   Engligh letter frequencies.  So, for a keylength = 5, letters 0, 4, 9... will be in the first vector.  
+   Letters 1, 5, 10... will be in the second pass, and so on.  For each pass, the program prints the letters 
+   it is considering, the size of the vector holding them, and then the frequency of each letter, in alphabetical
+   order.  It then outputs the maximum dot product calculated and which shift of the ciphertext vector resulted 
+   in that maximum amount.  This shift is saved.  After all passes are complete, the saved shift numbers are 
+   translated into letters, which are printed to the screen.  This is the key.
+
+   - The final section shows the now-decoded plaintext.  
+
+
+
+***** Notes *****
+
+This README is not meant to fully explain the code, but rather to explain what is being output to the screen
+when the program is run.  There are further explanations of how the program works in the code itself.
+
+
+The Utilities directory included here contains program files written by Duncan Buell for use in his CSCE 240 class.
+Specifically, the Scanner.cpp file was used in this program to read in the text file.  
+
